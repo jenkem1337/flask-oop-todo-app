@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        Todo's of {{username}}<br>
+
+        {% if todos | count %}
+            Lenght of Todo's {{todos | count}}
+        {% else %}
+            Any todo here, lets add some todo :)
+        {% endif %} <br>
+    </div>
+    <div>
+        <a href="{{url_for('index')}}">Home Page</a>
+        <a href="{{url_for('updateUser', id = userID)}}">Change user information</a> <br>
+        <a href="{{url_for('logout')}}">Logout</a>
+        <div id="close" onclick="document.getElementById('close').style.display ='none' ">
+            {% if error %}
+                <h3>{{error}}</h3>
+            {%endif%}
+        </div>
+
+        <form action="" method="post">
+            <input type="text" name="todo">
+            <button>Gönder</button>
+        </form>
+    </div>
+
+        <div>
+            {% for todo in todos %}
+            <li>
+            {{ todo.todoText}} 
+            {% if todo.isComplete %}
+                (Todo completed)
+            {% else %}
+                (Todo is not complate)
+            {% endif %}
+
+            <a href="{{url_for('deleteTodo', id = todo.id)}}">Delete Todo</a>
+            <a href="{{url_for('update', id = todo.id)}}">Update Todo</a>
+            <a href="{{url_for('toggleTodo', id = todo.id)}}">Toggle Todo</a>
+        </li> 
+        {%endfor%}
+
+        </div>
+</body>
+</html>
