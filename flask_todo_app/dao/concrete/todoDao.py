@@ -13,8 +13,7 @@ class TodoDao(ITodoDao):
         db.session.commit()
     
     def removeTodo(self,id):
-        _Todo = Todo()
-        todo = _Todo.query.get(id)  
+        todo = Todo.query.get(id)  
         db.session.delete(todo)
         db.session.commit()
 
