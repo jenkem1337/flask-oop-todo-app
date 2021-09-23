@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="close" onclick="document.getElementById('close').style.display ='none'">
+        {% if error %}
+            <h3>{{error}}</h3>
+        {% endif %}
+    </div>
+
     <form action="" method="post">
         <input type="text" value="{{oldTodo}}" name="new_todo" placeholder="new todo">
         <button>Güncelle</button>

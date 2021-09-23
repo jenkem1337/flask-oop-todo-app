@@ -7,9 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    {% if error %}
-        {{error}}
-    {% endif %}
+    <div id="close" onclick="document.getElementById('close').style.display ='none'">
+        {% if error %}
+            <h3>{{error}}</h3>
+        {% endif %}
+    </div>
     <form method="post">
         <input type="text" placeholder="usernamae" value="{{userName}}" name="username">
         <input type="text" placeholder="password" value="{{userPass}}" name="pass">
