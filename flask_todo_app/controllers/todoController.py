@@ -28,12 +28,17 @@ class TodoController:
 
     def updateTodo(self, id):
         if request.method =='POST':
+            error = None
             newTodo = request.form['new_todo']
+            if newTodo =='':
+                error = 'Update input should not be blank'
+                return render_template('update.html', error = error)
             self.__todoService.updateTodo(id, newTodo)
             return redirect(url_for('todos'))
         if request.method == 'GET':
             oldTodo = self.__todoService.findById(id)
-            return render_template('update.html', oldTodo = oldTodo.todoText)
+            oldTodo = oldTodo.todoText
+            return render_template('update.html', oldTodo = oldTodo)
         return render_template('update.html')
 
     def toggleTodo(self,id):
