@@ -37,18 +37,21 @@
             {% for todo in todos %}
             <li>
             {{ todo.todoText}} 
+            {% if todo.isComplete == False %}
+                (Todo is not complate)
+                <a href="{{url_for('deleteTodo', id = todo.id)}}">Delete Todo</a>
+                <a href="{{url_for('update', id = todo.id)}}">Update Todo</a>
+                <a href="{{url_for('toggleTodo', id = todo.id)}}">Toggle Todo</a>
+    
+            {% endif %}
             {% if todo.isComplete %}
                 (Todo completed)
-            {% else %}
-                (Todo is not complate)
+                <a href="{{url_for('deleteTodo', id = todo.id)}}">Delete Todo</a>
             {% endif %}
-
-            <a href="{{url_for('deleteTodo', id = todo.id)}}">Delete Todo</a>
-            <a href="{{url_for('update', id = todo.id)}}">Update Todo</a>
-            <a href="{{url_for('toggleTodo', id = todo.id)}}">Toggle Todo</a>
+                
         </li> 
         {%endfor%}
-
         </div>
+        
 </body>
 </html>
