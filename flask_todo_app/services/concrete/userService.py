@@ -9,8 +9,8 @@ class UserService(IUserService):
     def createUser(self, username, password, email):
         self.__userDao.createUser(username,password,email)
     
-    def getUser(self, username,password):
-        return self.__userDao.getUser(username, password)
+    def getUserForLogin(self, username,password):
+        return self.__userDao.getUserForLogin(username, password)
 
     def updateUserDetail(self, id, username, password, email):
         self.__userDao.updateUserDetail(id,username,password,email)

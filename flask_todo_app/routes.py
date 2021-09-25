@@ -21,7 +21,7 @@ def register():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    return userController.getUser()
+    return userController.getUserForLogin()
 
 @app.route('/updateUser/<int:id>', methods=['GET','POST'])
 def updateUser(id):

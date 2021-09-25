@@ -7,7 +7,7 @@ class IUserService(ABC):
         pass
 
     @abstractmethod
-    def getUser(self, username,password):
+    def getUserForLogin(self, username,password):
         pass
 
     @abstractmethod

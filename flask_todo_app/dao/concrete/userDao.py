@@ -13,7 +13,7 @@ class UserDao(IUserDao):
                 db.session.add(user)
                 db.session.commit()
     
-        def getUser(self,username, password):
+        def getUserForLogin(self,username, password):
                 user = User.query.filter_by(username = username, password = password).first()
                 return user
         

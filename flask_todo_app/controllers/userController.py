@@ -21,14 +21,16 @@ class UserController:
 
             self.__userService.createUser(username, password, email)
             return redirect(url_for('login'))
-        return render_template('register.html')
+        
+        if request.method == 'GET':
+            return render_template('register.html')
 
-    def getUser(self):
+    def getUserForLogin(self):
         if request.method =='POST':
             error = None
             username = request.form['username']
             password = request.form['pass']
-            user = self.__userService.getUser(username, password)
+            user = self.__userService.getUserForLogin(username, password)
             
             if not user:
                 error = 'This person does not exist'
@@ -37,7 +39,9 @@ class UserController:
             session['userID'] = user.id
             session['username'] = user.username
             return redirect(url_for('index'))
-        return render_template('login.html')
+        
+        if request.method == 'GET':
+            return render_template('login.html')
 
     def updateUserDetail(self, id):
         if request.method == 'POST':
