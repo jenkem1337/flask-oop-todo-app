@@ -24,6 +24,7 @@ def login():
     return userController.getUserForLogin()
 
 @app.route('/updateUser/<int:id>', methods=['GET','POST'])
+@login_required
 def updateUser(id):
     return userController.updateUserDetail(id)
 
