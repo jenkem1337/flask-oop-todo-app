@@ -6,22 +6,31 @@ from flask_todo_app.dao.abstract.todoDao import ITodoDao
 class TodoDao(ITodoDao):
 
     def createTodo(self,todoText, userID):
-        todo = Todo()
-        todo.todoText = todoText
-        todo.userID = userID
-        db.session.add(todo)
-        db.session.commit()
+        try:
+            todo = Todo()
+            todo.todoText = todoText
+            todo.userID = userID
+            db.session.add(todo)
+            db.session.commit()
+        except:
+            db.session.rollback()
     
     def removeTodo(self,id):
-        todo = Todo.query.get(id)  
-        db.session.delete(todo)
-        db.session.commit()
+        try:
+            todo = Todo.query.get(id)  
+            db.session.delete(todo)
+            db.session.commit()
+        except:
+            db.session.rollback()
 
     def updateTodo(self,id, todoText):
-        todo = Todo.query.get(id)
-        todo.todoText = todoText
-        db.session.commit()
-
+        try:
+            todo = Todo.query.get(id)
+            todo.todoText = todoText
+            db.session.commit()
+        except:
+            db.session.rollback()
+            
     def getAllTodos(self,userID):
         todo = Todo.query.filter_by(userID = userID).all()
         return todo
@@ -31,6 +40,9 @@ class TodoDao(ITodoDao):
         return todo
     
     def toggleTodo(self, id):
-        todo = Todo.query.get(id)
-        todo.isComplete = not todo.isComplete
-        db.session.commit()
+        try:
+            todo = Todo.query.get(id)
+            todo.isComplete = not todo.isComplete
+            db.session.commit()
+        except:
+            db.session.rollback()
