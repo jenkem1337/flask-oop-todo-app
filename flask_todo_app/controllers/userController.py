@@ -56,8 +56,10 @@ class UserController:
                 userName = user.username
                 userPass = user.password
                 userEmail = user.email
+                
                 return render_template('update-user.html',error = error, userName = userName, userPass = userPass, userEmail = userEmail)
 
+            session['username'] = username
             self.__userService.updateUserDetail(id,username, password, email)
             return redirect(url_for('todos'))
         
