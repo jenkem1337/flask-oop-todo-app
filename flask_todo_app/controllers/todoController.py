@@ -8,17 +8,9 @@ class TodoController:
     
     def listAllTodosAndCreateTodo(self):
         if request.method =='POST':
-            error = None
             id = session['userID']
             newTodo = request.form['todo']
-            
-            if newTodo =='':
-                id = session['userID']
-                username = session['username']
-                todos = self.__todoService.getAllTodos(id)
-                error = 'Add input should not be blank'
-                return render_template('list.html',error = error ,todos = todos, username = username, userID = id)
-            
+                        
             self.__todoService.createTodo(newTodo, id)
             return redirect(url_for('todos'))
         
@@ -30,12 +22,7 @@ class TodoController:
 
     def updateTodo(self, id):
         if request.method =='POST':
-            error = None
             newTodo = request.form['new_todo']
-            
-            if newTodo =='':
-                error = 'Update input should not be blank'
-                return render_template('update.html', error = error)
             
             self.__todoService.updateTodo(id, newTodo)
             return redirect(url_for('todos'))

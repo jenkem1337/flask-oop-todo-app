@@ -16,7 +16,7 @@ class UserController:
             user = self.__userService.findByUsername(username)
             
             if user:
-                error = 'This user already exist or inputs should not be blank'
+                error = 'This user already exist'
                 return render_template('register.html', error=error)
 
             self.__userService.createUser(username, password, email)
@@ -45,19 +45,9 @@ class UserController:
 
     def updateUserDetail(self, id):
         if request.method == 'POST':
-            error = None
             username = request.form['username']
             password = request.form['pass']
             email = request.form['email']
-
-            if username =='' or password =='' or email=='':
-                error = 'Input values should not blank'
-                user = self.__userService.findById(id)
-                userName = user.username
-                userPass = user.password
-                userEmail = user.email
-                
-                return render_template('update-user.html',error = error, userName = userName, userPass = userPass, userEmail = userEmail)
 
             session['username'] = username
             self.__userService.updateUserDetail(id,username, password, email)
