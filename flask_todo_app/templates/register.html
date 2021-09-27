@@ -16,9 +16,9 @@
     <a href="{{url_for('login')}}">Login Page</a> <br>
     <a href="{{url_for('index')}}">Home Page</a>
     <form method="post">
-        <input type="text" name="username" placeholder="username">
-        <input type="password" name="password" placeholder=" password">
-        <input type="text" name="email" placeholder="email">
+        <input type="text" name="username" placeholder="username" required>
+        <input type="password" name="password" placeholder=" password" required>
+        <input type="email" name="email" placeholder="email" required>
         <button>Gonder</button>
 
     </form>

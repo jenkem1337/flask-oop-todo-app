@@ -7,15 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="close" onclick="document.getElementById('close').style.display ='none' ">
-        {% if error %}
-            {{error}}
-        {% endif %}
-    </div>
     <form method="post">
-        <input type="text" placeholder="usernamae" value="{{userName}}" name="username">
-        <input type="text" placeholder="password" value="{{userPass}}" name="pass">
-        <input type="text" placeholder="email" value="{{userEmail}}" name="email">
+        <input type="text" placeholder="usernamae" value="{{userName}}" name="username" required>
+        <input type="text" placeholder="password" value="{{userPass}}" name="pass" required>
+        <input type="email" placeholder="email" value="{{userEmail}}" name="email" required>
         <button>Güncelle</button>
     </form>
 </body>

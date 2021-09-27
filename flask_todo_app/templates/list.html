@@ -21,14 +21,10 @@
         <a href="{{url_for('index')}}">Home Page</a>
         <a href="{{url_for('updateUser', id = userID)}}">Change user information</a> <br>
         <a href="{{url_for('logout')}}">Logout</a>
-        <div id="close" onclick="document.getElementById('close').style.display ='none' ">
-            {% if error %}
-                <h3>{{error}}</h3>
-            {%endif%}
-        </div>
+        
 
         <form action="" method="post">
-            <input type="text" name="todo">
+            <input type="text" name="todo" required>
             <button>Gönder</button>
         </form>
     </div>
