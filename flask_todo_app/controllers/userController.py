@@ -13,8 +13,8 @@ class UserController:
             username = request.form['username']
             password = request.form['password']
             email = request.form['email']
-            user = self.__userService.findByUsername(username)
             
+            user = self.__userService.findByUsername(username)
             if user:
                 error = 'This user already exist'
                 return render_template('register.html', error=error)
@@ -55,6 +55,10 @@ class UserController:
         
         if request.method=='GET':
             user = self.__userService.findById(id)
+            
+            if session['userID'] != id:
+                return render_template('error-page.html')
+            
             userName = user.username
             userPass = user.password
             userEmail = user.email
