@@ -29,16 +29,31 @@ class TodoController:
         
         if request.method == 'GET':
             oldTodo = self.__todoService.findById(id)
+                        
+            if oldTodo == None or session['userID'] != oldTodo.user.id:
+                return render_template('error-page.html')
+            
+            
             oldTodo = oldTodo.todoText
             return render_template('update.html', oldTodo = oldTodo)
         
 
     def toggleTodo(self,id):
         if request.method =='GET':
+            todo = self.__todoService.findById(id)
+            
+            if todo == None or session['userID'] != todo.user.id:
+                return render_template('error-page.html')
+            
             self.__todoService.toggleTodo(id)
             return redirect(url_for('todos'))
 
     def deleteTodo(self, id):
         if request.method == 'GET':
+            todo = self.__todoService.findById(id)
+            if todo == None or session['userID'] != todo.user.id:
+                return render_template('error-page.html')
+            
+            
             self.__todoService.removeTodo(id)
             return redirect(url_for('todos'))
