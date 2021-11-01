@@ -45,6 +45,7 @@ def deleteTodo(id):
     return todoController.deleteTodo(id)
 
 @app.route('/toggleTodo/<int:id>',methods=['GET','POST'])
+@login_required
 def toggleTodo(id):
     return todoController.toggleTodo(id)
 
